@@ -31,8 +31,8 @@ enum planck_keycodes {
   BACKLIT
 };
 
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
+#define LOWER TT(_LOWER)
+#define RAISE TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Template 
@@ -84,14 +84,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  * 3 |       |        |        |        |        |        |        | PageDn | PageUp | Home   | End    |        |
  *   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- * 4 |       |        |        |        |        |                 |        | Next   | Vol-   | Vol+   | Play   |
+ * 4 |       |        |        |        |        |                 |        |        |        |        |        |
  *   `----------------------------------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_planck_grid(
       KC_TILD, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______, _______, _______, _______, KC_LPRN, KC_RPRN, _______,
       KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_BTN1, KC_BTN2, KC_LCBR, KC_RCBR, KC_PIPE,
       _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, KC_HOME, KC_END,  _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 /* Raise
@@ -155,7 +155,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
       CLR_RED, CLR_NON, CLR_GRN, CLR_BLU, CLR_GRN, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_BLU, CLR_BLU, CLR_NON,
       CLR_RED, CLR_NON, CLR_BLU, CLR_BLU, CLR_BLU, CLR_NON, CLR_NON, CLR_GRN, CLR_GRN, CLR_BLU, CLR_BLU, CLR_BLU,
       CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_ORG, CLR_ORG, CLR_GRN, CLR_GRN, CLR_NON,
-      CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON         , CLR_NON, CLR_YLW, CLR_YLW, CLR_YLW, CLR_YLW
+      CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON         , CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON
     },
     /* Raise */
     [2] = {
