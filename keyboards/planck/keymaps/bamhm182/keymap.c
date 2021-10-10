@@ -21,6 +21,17 @@
 #include "eeprom.h"
 #include "print.h"
 
+#define LOWER TT(_LOWER)
+#define RAISE TT(_RAISE)
+
+#define CLR_NON {  0,  0,  0}
+#define CLR_RED {243,222,234}
+#define CLR_PUR {169,120,255}
+#define CLR_GRN { 85,203,158}
+#define CLR_BLU {134,255,213}
+#define CLR_ORG { 10,225,255}
+#define CLR_YLW { 32,176,255}
+
 extern rgb_config_t rgb_matrix_config;
 
 enum planck_layers {
@@ -34,18 +45,6 @@ enum planck_keycodes {
   COLEMAK = SAFE_RANGE,
   BACKLIT
 };
-
-#define LOWER TT(_LOWER)
-#define RAISE TT(_RAISE)
-
-#define CLR_NON {  0,  0,  0}
-#define CLR_RED {243,222,234}
-#define CLR_PUR {169,120,255}
-#define CLR_GRN { 85,203,158}
-#define CLR_BLU {134,255,213}
-#define CLR_ORG { 10,225,255}
-#define CLR_YLW { 32,176,255}
-
 
 /* Keymaps */
 
@@ -63,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   `----------------------------------------------------------------------------------------------------------'
  */
 /*
-[_TEMPLATE = LAYOUT_planck_grid(
+[_TEMPLATE] = LAYOUT_planck_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -217,11 +216,6 @@ void rgb_matrix_indicators_user(void) {
   }
 }
 
-#ifdef AUDIO_ENABLE
-  float plover_song[][2]     = SONG(PLOVER_SOUND);
-  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-#endif
-
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
@@ -231,17 +225,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case BACKLIT:
       if (record->event.pressed) {
         register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-        #ifdef KEYBOARD_planck_rev5
-          writePinLow(E6);
-        #endif
+#ifdef BACKLIGHT_ENABLE
+        backlight_step();
+#endif
+#ifdef KEYBOARD_planck_rev5
+        writePinLow(E6);
+#endif
       } else {
         unregister_code(KC_RSFT);
-        #ifdef KEYBOARD_planck_rev5
-          writePinHigh(E6);
-        #endif
+#ifdef KEYBOARD_planck_rev5
+        writePinHigh(E6);
+#endif
       }
       return false;
       break;
@@ -272,51 +266,19 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     }
   } else {
     if (clockwise) {
-      #ifdef MOUSEKEY_ENABLE
+#ifdef MOUSEKEY_ENABLE
         tap_code(KC_MS_WH_DOWN);
-      #else
+#else
         tap_code(KC_PGDN);
-      #endif
+#endif
     } else {
-      #ifdef MOUSEKEY_ENABLE
+#ifdef MOUSEKEY_ENABLE
         tap_code(KC_MS_WH_UP);
-      #else
+#else
         tap_code(KC_PGUP);
-      #endif
+#endif
     }
   }
-    return true;
-}
-
-bool dip_switch_update_user(uint8_t index, bool active) {
-    switch (index) {
-        case 0: {
-#ifdef AUDIO_ENABLE
-            static bool play_sound = false;
-#endif
-            if (active) {
-#ifdef AUDIO_ENABLE
-                if (play_sound) { PLAY_SONG(plover_song); }
-#endif
-                layer_on(_ADJUST);
-            } else {
-#ifdef AUDIO_ENABLE
-                if (play_sound) { PLAY_SONG(plover_gb_song); }
-#endif
-                layer_off(_ADJUST);
-            }
-#ifdef AUDIO_ENABLE
-            play_sound = true;
-#endif
-            break;
-        }
-        case 1:
-            if (active) {
-                muse_mode = true;
-            } else {
-                muse_mode = false;
-            }
-    }
     return true;
 }
 
