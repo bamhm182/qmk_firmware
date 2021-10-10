@@ -2,6 +2,5 @@ SRC += muse.c
 
 MOUSEKEY_ENABLE = yes
 COMMAND_ENABLE  = no
-CONSOLE_ENABLE  = yes
+CONSOLE_ENABLE  = no
 MIDI_ENABLE     = yes
-TERMINAL_ENABLE = yes

@@ -14,10 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* Setup */
+
 #include QMK_KEYBOARD_H
 #include "muse.h"
 #include "eeprom.h"
 #include "print.h"
+
+extern rgb_config_t rgb_matrix_config;
 
 enum planck_layers {
   _COLEMAK,
@@ -33,6 +37,17 @@ enum planck_keycodes {
 
 #define LOWER TT(_LOWER)
 #define RAISE TT(_RAISE)
+
+#define CLR_NON {  0,  0,  0}
+#define CLR_RED {243,222,234}
+#define CLR_PUR {169,120,255}
+#define CLR_GRN { 85,203,158}
+#define CLR_BLU {134,255,213}
+#define CLR_ORG { 10,225,255}
+#define CLR_YLW { 32,176,255}
+
+
+/* Keymaps */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Template 
@@ -116,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Adjust (Lower + Raise)
  *       1       2        3        4        5        6        7        8        9        10       11       12
  *   ,----------------------------------------------------------------------------------------------------------.
- * 1 | AUtog | MIDtog | MUStog | MUSmod | RGBtog | RGBmod | Debug  |        |        |        |        |        |
+ * 1 | AUtog | MIDtog | MUStog | MUSmod | RGBtog | RGBmod |        |        |        |        |        | Debug  |
  *   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  * 2 | F1    | F2     | F3     | F4     | F5     | F6     |        | Vol-   | Vol+   | Skip   | Play   | Reset  |
  *   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
@@ -126,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   `----------------------------------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-      AU_TOG , MI_TOG , MU_TOG , MU_MOD , RGB_TOG, RGB_MOD, DEBUG  , _______, _______, _______, _______, _______,
+      AU_TOG , MI_TOG , MU_TOG , MU_MOD , RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, DEBUG,
       KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, RESET  ,
       KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -134,20 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-
-extern rgb_config_t rgb_matrix_config;
-
-void keyboard_post_init_user(void) {
-  rgb_matrix_enable();
-}
-
-#define CLR_NON {  0,  0,  0}
-#define CLR_RED {243,222,234}
-#define CLR_PUR {169,120,255}
-#define CLR_GRN { 85,203,158}
-#define CLR_BLU {134,255,213}
-#define CLR_ORG { 10,225,255}
-#define CLR_YLW { 32,176,255}
+/* LED Colors */
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     /* Lower */
@@ -166,12 +168,18 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     },
     /* Adjust */
     [3] = {
-      CLR_GRN, CLR_GRN, CLR_YLW, CLR_YLW, CLR_RED, CLR_RED, CLR_ORG, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON,
+      CLR_GRN, CLR_GRN, CLR_YLW, CLR_YLW, CLR_RED, CLR_RED, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_ORG,
       CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_NON, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_ORG,
       CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON,
       CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON         , CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON
     }
 };
+
+/* Functions */
+
+void keyboard_post_init_user(void) {
+  rgb_matrix_enable();
+}
 
 void set_layer_color(int layer) {
   for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
