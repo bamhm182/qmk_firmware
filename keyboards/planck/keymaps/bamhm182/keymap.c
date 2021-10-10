@@ -212,20 +212,20 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   },
   */
   [_LOWER] = {
-    CLR_RED, CLR____, CLR_GRN, CLR_BLU, CLR_GRN, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR____,
-    CLR_RED, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_GRN, CLR_GRN, CLR_BLU, CLR_BLU, CLR_BLU,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_ORG, CLR_ORG, CLR_GRN, CLR_GRN, CLR____,
+    CLR____, CLR____, CLR_GRN, CLR_BLU, CLR_GRN, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_PUR, CLR____,
+    CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_GRN, CLR_GRN, CLR_PUR, CLR_ORG, CLR_ORG,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_ORG, CLR_ORG,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_RAISE] = {
-    CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
-    CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR_GRN, CLR_BLU, CLR_GRN, CLR____
   },
   [_ADJUST] = {
-    CLR_GRN, CLR_GRN, CLR_YLW, CLR_YLW, CLR_RED, CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_ORG,
-    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_ORG,
+    CLR_GRN, CLR_GRN, CLR_YLW, CLR_YLW, CLR_RED, CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_RED,
+    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_RED,
     CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
