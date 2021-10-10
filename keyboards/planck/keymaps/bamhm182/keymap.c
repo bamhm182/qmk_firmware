@@ -220,6 +220,29 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
+layer_state_t layer_state_set_kb(layer_state_t state) {
+    planck_ez_left_led_off();
+    planck_ez_right_led_off();
+    
+    state = layer_state_set_user(state);
+    uint8_t layer = biton32(state);
+    switch (layer) {
+        case PLANCK_EZ_LED_LOWER:
+            planck_ez_left_led_on();
+            break;
+        case PLANCK_EZ_LED_RAISE:
+            planck_ez_right_led_on();
+            break;
+        case PLANCK_EZ_LED_ADJUST:
+            planck_ez_right_led_on();
+            planck_ez_left_led_on();
+            break;
+        default:
+            break;
+    }
+    return state;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case BACKLIT:
