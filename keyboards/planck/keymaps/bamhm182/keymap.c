@@ -25,7 +25,7 @@
 
 /* Colors */
 
-#define CLR_NON {  0,  0,  0}
+#define CLR____ {  0,  0,  0}
 #define CLR_RED {243,222,234}
 #define CLR_ORG { 10,225,255}
 #define CLR_YLW { 32,176,255}
@@ -37,37 +37,47 @@ extern rgb_config_t rgb_matrix_config;
 
 /* Layers */
 
-#define LOWER TT(_LOWER)
-#define RAISE TT(_RAISE)
+#define LOWER   TT(_LOWER)
+#define RAISE   TT(_RAISE)
+#define GAMING  TO(_GAMING)
+#define COLEMAK TO(_COLEMAK)
 
 enum planck_layers {
   _COLEMAK,
   _LOWER,
   _RAISE,
-  _ADJUST
+  _ADJUST,
+  _GAMING,
 };
 
 /* Music */
 
-bool muse_mode = false;
-uint8_t last_muse_note = 0;
-uint16_t muse_counter = 0;
-uint8_t muse_offset = 70;
-uint16_t muse_tempo = 50;
+bool     muse_mode      = false;
+uint8_t  last_muse_note = 0;
+uint16_t muse_counter   = 0;
+uint8_t  muse_offset    = 70;
+uint16_t muse_tempo     = 50;
 
 /* Tap Dance */
 
 #define TD_SPC  TD(TD_SPC_TAB)
 #define TD_LSFT TD(TD_LSFT_CAPS)
+#define TD_LCTL TD(TD_LCTL_RCTL)
 
 enum tap_dance {
   TD_SPC_TAB,
-  TD_LSFT_CAPS
+  TD_LSFT_CAPS,
+  TD_CTL,
+  TD_ALT,
+  TD_GUI,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_SPC_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_TAB),
-    [TD_LSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS)
+  [TD_SPC_TAB]   = ACTION_TAP_DANCE_DOUBLE(KC_SPC , KC_TAB ),
+  [TD_LSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
+  [TD_CTL]       = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_RCTL),
+  [TD_ALT]       = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
+  [TD_GUI]       = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_RGUI),
 };
 
 /********** Keymaps **********/
@@ -77,9 +87,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
  1 |       |        |        |        |        |        |        |        |        |        |        |        |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  2 |       |        |        |        |        |        |        |        |        |        |        |        |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  3 |       |        |        |        |        |        |        |        |        |        |        |        |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  4 |       |        |        |        |        |                 |        |        |        |        |        |
@@ -90,119 +100,140 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 */
 
 /* Colemak
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |       |   Q    |   W    |   F    |   P    |   G    |   J    |   L    |   U    |   Y    |   ;    | Esc    |
+ 1 | Esc   |   Q    |   W    |   F    |   P    |   G    |   J    |   L    |   U    |   Y    |  ; :   |        |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 2 | Bksp  |   A    |   R    |   S    |   T    |   D    |   H    |   N    |   E    |   I    |   O    |  ' "   |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 3 | Shift |   Z    |   X    |   C    |   V    |   B    |   K    |   M    |  , <   |  . >   |  / ?   | Enter  |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 2 | Bksp  |   A    |   R    |   S    |   T    |   D    |   H    |   N    |   E    |   I    |   O    |  "     |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 3 | Shift |   Z    |   X    |   C    |   V    |   B    |   K    |   M    |   ,    |   .    |   /    |Enter   |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 |       | Ctrl   | Alt    | GUI    |Lower   |      Space      |Raise   | Left   | Down   |  Up    |Right   |
+ 4 | GAMING| Ctrl   | Alt    | GUI    | Lower  |      Space      | Raise  | Left   | Down   |  Up    | Right  |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_COLEMAK] = LAYOUT_planck_grid(
-    _______, KC_Q   , KC_W   , KC_F   , KC_P   , KC_G   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_ESC ,
+    KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_G   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, _______,
     KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_D   , KC_H   , KC_N   , KC_E   , KC_I   , KC_O   , KC_QUOT,
     TD_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_K   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
-    _______, KC_LCTL, KC_LALT, KC_LGUI, LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+    GAMING , TD_CTL , TD_ALT , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   ),
 
 /* Lower
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |   ~   |        | MS_LC  | MS_U   |MS_RC   |        |        |        |        |   (    |   )    |        |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        | MS_LC  | MS_RC  |   {    |   }    |  |     |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 3 |       |        |        |        |        |        |        | PageDn | PageUp | Home   | End    |        |
+ 1 |       |        | MS_LC  | MS_U   | MS_RC  |        |        |  [ {   |  ] }   |  - _   |  = +   |        |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        | MS_LC  | MS_RC  |  ` ~   | PageUp | Home   |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 3 |       |        |        |        |        |        |        |   (    |   )    |  \ |   | PageDn | End    |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  4 |       |        |        |        |        |                 |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_LOWER] = LAYOUT_planck_grid(
-    KC_TILD, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______, _______, _______, _______, KC_LPRN, KC_RPRN, _______,
-    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_BTN1, KC_BTN2, KC_LCBR, KC_RCBR, KC_PIPE,
-    _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, KC_HOME, KC_END,  _______,
+    _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______, _______, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL , _______,
+    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_BTN1, KC_BTN2, KC_GRV , KC_PGUP, KC_HOME,
+    _______, _______, _______, _______, _______, _______, _______, KC_LPRN, KC_RPRN, KC_BSLS, KC_PGDN, KC_END ,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
 /* Raise
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |   `   |        |        |        |        |        |        |   +    |   7    |   8    |   9    |  *     |
+ 1 |       |        |        |        |        |        |        |        |  7 &   |  8 *   |  9 (   |  0 )   |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 2 |       |        |        |        |        |        |        |   +    |  4 $   |  5 %   |  6 ^   |   *    |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 3 |       |        |        |        |        |        |        |  - _   |  1 !   |  2 @   |  3 #   |  / ?   |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 2 | Del   |        |        |        |        |        |        |   -    |   4    |   5    |   6    |  \     |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 3 |       |        |        |        |        |        |        |   0    |   1    |   2    |   3    |        |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 |       |        |        |        |        |                 |        |        |        |        |        |
+ 4 |       |        |        |        |        |                 |        |  . >   |  0 )   |  , >   |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_RAISE] = LAYOUT_planck_grid(
-    KC_GRV , _______, _______, _______, _______, _______, _______, KC_PLUS, KC_7   , KC_8   , KC_9   , KC_ASTR,
-    KC_DEL , _______, _______, _______, _______, _______, _______, KC_MINS, KC_4   , KC_5   , KC_6   , KC_SLSH,
-    _______, _______, _______, _______, _______, _______, _______, KC_0   , KC_1   , KC_2   , KC_3   , _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    _______, _______, _______, _______, _______, _______, _______, _______, KC_7   , KC_8   , KC_9   , KC_0   ,
+    _______, _______, _______, _______, _______, _______, _______, KC_PLUS, KC_4   , KC_5   , KC_6   , KC_ASTR,
+    _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_1   , KC_2   , KC_3   , KC_SLSH,
+    _______, _______, _______, _______, _______, _______, _______, _______, KC_DOT , KC_0   , KC_COMM, _______
   ),
 
 /* Adjust (Lower + Raise)
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
  1 | AUtog | MIDtog | MUStog | MUSmod | RGBtog | RGBmod |        |        |        |        |        | Debug  |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  2 | F1    | F2     | F3     | F4     | F5     | F6     |        | Vol-   | Vol+   | Skip   | Play   | Reset  |
-   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  3 | F7    | F8     | F9     | F10    | F11    | F12    |        |        |        |        |        |        |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  4 |       |        |        |        |        |                 |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_ADJUST] = LAYOUT_planck_grid(
-    AU_TOG , MI_TOG , MU_TOG , MU_MOD , RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, DEBUG,
+    AU_TOG , MI_TOG , MU_TOG , MU_MOD , RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, DEBUG  ,
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, RESET  ,
     KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
+/* Gaming 
+       1       2        3        4        5        6        7        8        9        10       11       12
+   ,----------------------------------------------------------------------------------------------------------.
+ 1 |       |        | MS_LC  | MS_U   | MS_RC  |        |        |   Q    |   W    |   E    |        |        |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 2 |       |        | MS_L   | MS_D   | MS_R   |        |        |   A    |   S    |   D    |        |        |
+   |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
+ 3 |       |        |        |        |        |        |        |        |        |        |        |        |
+   |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ 4 |COLEMAK|        |        |        |        |                 |        |        |        |        |        |
+   `----------------------------------------------------------------------------------------------------------'
+ */
+  [_GAMING] = LAYOUT_planck_grid(
+    _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______, _______, KC_Q   , KC_W   , KC_E   , _______, _______,
+    _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_A   , KC_S   , KC_D   , _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    COLEMAK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  ),
 };
 
 /* LED Colormaps */
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-  /* Template
+  /*
   [X] = {
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON         , CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____,
   },
   */
-  /* Lower */
   [_LOWER] = {
-    CLR_RED, CLR_NON, CLR_GRN, CLR_BLU, CLR_GRN, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_BLU, CLR_BLU, CLR_NON,
-    CLR_RED, CLR_NON, CLR_BLU, CLR_BLU, CLR_BLU, CLR_NON, CLR_NON, CLR_GRN, CLR_GRN, CLR_BLU, CLR_BLU, CLR_BLU,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_ORG, CLR_ORG, CLR_GRN, CLR_GRN, CLR_NON,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON         , CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON
+    CLR_RED, CLR____, CLR_GRN, CLR_BLU, CLR_GRN, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR____,
+    CLR_RED, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_GRN, CLR_GRN, CLR_BLU, CLR_BLU, CLR_BLU,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_ORG, CLR_ORG, CLR_GRN, CLR_GRN, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
-  /* Raise */
   [_RAISE] = {
-    CLR_RED, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
-    CLR_RED, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_NON,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON         , CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON
+    CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
+    CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
-  /* Adjust */
   [_ADJUST] = {
-    CLR_GRN, CLR_GRN, CLR_YLW, CLR_YLW, CLR_RED, CLR_RED, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_ORG,
-    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_NON, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_ORG,
-    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON,
-    CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON         , CLR_NON, CLR_NON, CLR_NON, CLR_NON, CLR_NON
+    CLR_GRN, CLR_GRN, CLR_YLW, CLR_YLW, CLR_RED, CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_ORG,
+    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_ORG,
+    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
+  },
+  [_GAMING] = {
+    CLR____, CLR____, CLR_BLU, CLR_GRN, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_GRN, CLR_BLU, CLR____, CLR____,
+    CLR____, CLR____, CLR_GRN, CLR_GRN, CLR_GRN, CLR____, CLR____, CLR_GRN, CLR_GRN, CLR_GRN, CLR____, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
+    CLR_ORG, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____,
   },
 };
 
@@ -271,6 +302,9 @@ void rgb_matrix_indicators_user(void) {
       break;
     case _ADJUST:
       set_layer_color(_ADJUST);
+      break;
+    case _GAMING:
+      set_layer_color(_GAMING);
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
