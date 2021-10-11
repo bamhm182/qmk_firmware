@@ -69,6 +69,8 @@ uint16_t muse_tempo     = 50;
 #define TD_ALT  TD(TD_LRALT)
 #define TD_GUI  TD(TD_LRGUI)
 #define TD_MSPC TD(TD_MS_B1_B2)
+#define TD_MWDU TD(TD_WHD_WHU)
+#define TD_MWRL TD(TD_WHR_WHL)
 
 enum tap_dance {
   TD_SPC_TAB,
@@ -77,6 +79,8 @@ enum tap_dance {
   TD_LRALT,
   TD_LRGUI,
   TD_MS_B1_B2,
+  TD_WHD_WHU,
+  TD_WHR_WHL,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -86,6 +90,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_LRALT]     = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
   [TD_LRGUI]     = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_RGUI),
   [TD_MS_B1_B2]  = ACTION_TAP_DANCE_DOUBLE(KC_BTN1, KC_BTN2),
+  [TD_WHD_WHU]   = ACTION_TAP_DANCE_DOUBLE(KC_WH_D, KC_WH_U),
+  [TD_WHR_WHL]   = ACTION_TAP_DANCE_DOUBLE(KC_WH_R, KC_WH_L),
 };
 
 /********** Keymaps **********/
@@ -134,19 +140,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Lower
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |       |        | MS_LC  | MS_U   | MS_RC  |        |        |  [ {   |  ] }   |  - _   |  = +   |        |
+ 1 |       |        | MS_WHRL| MS_U   | MS_WHDU|        |        |  [ {   |  ] }   |  - _   |  = +   |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        | MS_LC  | MS_RC  |  ` ~   | PageUp | Home   |
+ 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        |   (    |   )    |  ` ~   | PageUp | Home   |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 |       |        |        |        |        |        |        |   (    |   )    |  \ |   | PageDn | End    |
+ 3 |       |        |        |        |        |        |        |        |        |  \ |   | PageDn | End    |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 |       |        |        |        |        |                 |        |        |        |        |        |
+ 4 |       |        |        |        |        |    MS_LC_RC     |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_LOWER] = LAYOUT_planck_grid(
-    _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______, _______, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL , _______,
-    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_BTN1, KC_BTN2, KC_GRV , KC_PGUP, KC_HOME,
-    _______, _______, _______, _______, _______, _______, _______, KC_LPRN, KC_RPRN, KC_BSLS, KC_PGDN, KC_END ,
+    _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL , _______,
+    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_LPRN, KC_RPRN, KC_GRV , KC_PGUP, KC_HOME,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BSLS, KC_PGDN, KC_END ,
     _______, _______, _______, _______, _______, TD_MSPC, TD_MSPC, _______, _______, _______, _______, _______
   ),
 
@@ -220,9 +226,9 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   },
   */
   [_LOWER] = {
-    CLR____, CLR____, CLR_GRN, CLR_BLU, CLR_GRN, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_PUR, CLR____,
-    CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_GRN, CLR_GRN, CLR_PUR, CLR_ORG, CLR_ORG,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_ORG, CLR_ORG,
+    CLR____, CLR____, CLR_ORG, CLR_BLU, CLR_ORG, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_PUR, CLR____,
+    CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_ORG, CLR_ORG,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_ORG, CLR_ORG,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_RAISE] = {
