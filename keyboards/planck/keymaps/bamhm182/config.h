@@ -16,19 +16,29 @@
 
 #pragma once
 
+#define UPGRADE_SOUND \
+  S__NOTE(_C5 ), S__NOTE(_G4 ), S__NOTE(_C5 ), S__NOTE(_E5 ), S__NOTE(_G5 ), S__NOTE(_C6 ), S__NOTE(_G5 ), S__NOTE(_GS4), \
+  S__NOTE(_C5 ), S__NOTE(_DS5), S__NOTE(_GS5), S__NOTE(_DS5), S__NOTE(_GS5), S__NOTE(_C6 ), S__NOTE(_DS6), S__NOTE(_GS6), \
+  S__NOTE(_DS6), S__NOTE(_AS4), S__NOTE(_D5 ), S__NOTE(_F5 ), S__NOTE(_AS5), S__NOTE(_D6 ), S__NOTE(_F6 ), S__NOTE(_AS6), \
+  S__NOTE(_F6 )
+
 #ifdef AUDIO_ENABLE
-    #define STARTUP_SONG SONG(NO_SOUND)
+  #define STARTUP_SONG SONG(NO_SOUND)
+  #define GOODBYE_SONG SONG(UPGRADE_SOUND)
 #endif
 
 #define MIDI_BASIC
 
 #define ENCODER_RESOLUTION 4
 
-#define TAPPING_TERM 175
+#define TAPPING_TERM 200
 
 #define ORYX_CONFIGURATOR
 #define PLANCK_EZ_USER_LEDS
 
-#define PLANCK_EZ_LED_LOWER 1
-#define PLANCK_EZ_LED_RAISE 2
+#define PLANCK_EZ_LED_LOWER  1
+#define PLANCK_EZ_LED_RAISE  2
 #define PLANCK_EZ_LED_ADJUST 3
+
+#undef  MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL 16

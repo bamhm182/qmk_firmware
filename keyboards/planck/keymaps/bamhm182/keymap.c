@@ -26,12 +26,15 @@
 /* Colors */
 
 #define CLR____ {  0,  0,  0}
-#define CLR_RED {243,222,234}
-#define CLR_ORG { 10,225,255}
-#define CLR_YLW { 32,176,255}
-#define CLR_GRN { 85,203,158}
+#define CLR_RED {  0,255,255}
+#define CLR_ORG { 28,255,255}
+#define CLR_YLW { 40,255,255}
+#define CLR_GRN { 83,255,214}
 #define CLR_BLU {134,255,213}
-#define CLR_PUR {169,120,255}
+#define CLR_PUR {198,255,255}
+
+#define CLR_PNK {243,222,234}
+#define CLR_TAN { 10,225,255}
 
 extern rgb_config_t rgb_matrix_config;
 
@@ -62,22 +65,27 @@ uint16_t muse_tempo     = 50;
 
 #define TD_SPC  TD(TD_SPC_TAB)
 #define TD_LSFT TD(TD_LSFT_CAPS)
-#define TD_LCTL TD(TD_LCTL_RCTL)
+#define TD_CTL  TD(TD_LRCTL)
+#define TD_ALT  TD(TD_LRALT)
+#define TD_GUI  TD(TD_LRGUI)
+#define TD_MSPC TD(TD_MS_B1_B2)
 
 enum tap_dance {
   TD_SPC_TAB,
   TD_LSFT_CAPS,
-  TD_CTL,
-  TD_ALT,
-  TD_GUI,
+  TD_LRCTL,
+  TD_LRALT,
+  TD_LRGUI,
+  TD_MS_B1_B2,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SPC_TAB]   = ACTION_TAP_DANCE_DOUBLE(KC_SPC , KC_TAB ),
   [TD_LSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
-  [TD_CTL]       = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_RCTL),
-  [TD_ALT]       = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
-  [TD_GUI]       = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_RGUI),
+  [TD_LRCTL]     = ACTION_TAP_DANCE_DOUBLE(KC_LCTL, KC_RCTL),
+  [TD_LRALT]     = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
+  [TD_LRGUI]     = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_RGUI),
+  [TD_MS_B1_B2]  = ACTION_TAP_DANCE_DOUBLE(KC_BTN1, KC_BTN2),
 };
 
 /********** Keymaps **********/
@@ -139,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______, _______, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL , _______,
     KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_BTN1, KC_BTN2, KC_GRV , KC_PGUP, KC_HOME,
     _______, _______, _______, _______, _______, _______, _______, KC_LPRN, KC_RPRN, KC_BSLS, KC_PGDN, KC_END ,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    _______, _______, _______, _______, _______, TD_MSPC, TD_MSPC, _______, _______, _______, _______, _______
   ),
 
 /* Raise
@@ -215,7 +223,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     CLR____, CLR____, CLR_GRN, CLR_BLU, CLR_GRN, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_PUR, CLR____,
     CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_GRN, CLR_GRN, CLR_PUR, CLR_ORG, CLR_ORG,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_ORG, CLR_ORG,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_RAISE] = {
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU,
