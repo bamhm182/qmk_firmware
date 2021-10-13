@@ -121,19 +121,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Colemak
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 | Esc   |   Q    |   W    |   F    |   P    |   G    |   J    |   L    |   U    |   Y    |  ; :   |        |
+ 1 | Esc   |   Q    |   W    |   F    |   P    |   B    |   J    |   L    |   U    |   Y    |  ; :   |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 | Bksp  |   A    |   R    |   S    |   T    |   D    |   H    |   N    |   E    |   I    |   O    |  ' "   |
+ 2 | Bksp  |   A    |   R    |   S    |   T    |   G    |   M    |   N    |   E    |   I    |   O    |  ' "   |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 | Shift |   Z    |   X    |   C    |   V    |   B    |   K    |   M    |  , <   |  . >   |  / ?   | Enter  |
+ 3 | Shift |   Z    |   X    |   C    |   D    |   V    |   K    |   H    |  , <   |  . >   |  / ?   | Enter  |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  4 | GAMING| Ctrl   | Alt    | GUI    | Lower  |      Space      | Raise  | Left   | Down   |  Up    | Right  |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_COLEMAK] = LAYOUT_planck_grid(
-    KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_G   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, _______,
-    KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_D   , KC_H   , KC_N   , KC_E   , KC_I   , KC_O   , KC_QUOT,
-    TD_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_K   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
+    KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, _______,
+    KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_QUOT,
+    TD_LSFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
     GAMING , TD_CTL , TD_ALT , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   ),
 
