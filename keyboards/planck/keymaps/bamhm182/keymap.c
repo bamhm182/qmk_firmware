@@ -145,45 +145,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Lower
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |       |        | MS_WHRL| MS_U   | MS_WHDU|        |        |  [ {   |  ] }   |  - _   |  = +   |        |
+ 1 |       |        | MS_WHRL| MS_U   | MS_WHDU|        |        |  [ {   |  ] }   | PageUp | Home   |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        |   (    |   )    |  ` ~   | PageUp | Home   |
+ 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        |   (    |   )    | PageDn | End    |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 |       |        |        |        |        |        |        |        |        |  \ |   | PageDn | End    |
+ 3 |       |        |        |        |        |        |        |  ` ~   |  - _   |  = +   |  \ |   |        |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  4 |       |        |        |        |        |    MS_LC_RC     |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_LOWER] = LAYOUT_planck_grid(
-    _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL , _______,
-    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_LPRN, KC_RPRN, KC_GRV , KC_PGUP, KC_HOME,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BSLS, KC_PGDN, KC_END ,
+    _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______, KC_LBRC, KC_RBRC, KC_PGUP, KC_HOME, _______,
+    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_LPRN, KC_RPRN, KC_PGDN, KC_END , _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, _______,
     _______, _______, _______, _______, _______, TD_MSPC, TD_MSPC, _______, _______, _______, _______, _______
   ),
 
 /* Raise
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |       |        |        |        |        |        |        |        |  7 &   |  8 *   |  9 (   |  0 )   |
+ 1 |       |        |   A    |   B    |   C    |        |        |  7 &   |  8 *   |  9 (   |  0 )   |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 |       |        |        |        |        |        |        |   +    |  4 $   |  5 %   |  6 ^   |   *    |
+ 2 |       |   :    |   D    |   E    |   F    |        |        |  4 $   |  5 %   |  6 ^   |  . >   |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 |       |        |        |        |        |        |        |  - _   |  1 !   |  2 @   |  3 #   |  / ?   |
+ 3 |       |   *    |  / ?   |   +    |  - _   |        |        |  1 !   |  2 @   |  3 #   |  , <   |        |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 |       |        |        |        |        |                 |        |  . >   |  0 )   |  , >   |        |
+ 4 |       |        |        |        |        |                 |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_RAISE] = LAYOUT_planck_grid(
-    _______, _______, _______, _______, _______, _______, _______, _______, KC_7   , KC_8   , KC_9   , KC_0   ,
-    _______, _______, _______, _______, _______, _______, _______, KC_PLUS, KC_4   , KC_5   , KC_6   , KC_ASTR,
-    _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_1   , KC_2   , KC_3   , KC_SLSH,
-    _______, _______, _______, _______, _______, _______, _______, _______, KC_DOT , KC_0   , KC_COMM, _______
+    _______, _______, KC_A   , KC_B   , KC_C   , _______, _______, KC_7   , KC_8   , KC_9   , KC_0   , _______,
+    _______, KC_COLN, KC_D   , KC_E   , KC_F   , _______, _______, KC_4   , KC_5   , KC_6   , KC_DOT , _______,
+    _______, KC_ASTR, KC_SLSH, KC_PLUS, KC_MINS, _______, _______, KC_1   , KC_2   , KC_3   , KC_COMM, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
 /* Adjust (Lower + Raise)
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 | AUtog | MIDtog | MUStog | MUSmod | RGBtog | RGBmod |        |        |        |        |        | Debug  |
+ 1 |       | RGBtog | RGBmod | ASDown | ASUp   | ASRpt  | ASTog  |        |        |        |        | Debug  |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  2 | F1    | F2     | F3     | F4     | F5     | F6     |        | Vol-   | Vol+   | Skip   | Play   | Reset  |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
@@ -193,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    `----------------------------------------------------------------------------------------------------------'
  */
   [_ADJUST] = LAYOUT_planck_grid(
-    AU_TOG , MI_TOG , MU_TOG , MU_MOD , RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, DEBUG  ,
+    _______, RGB_TOG, RGB_MOD, KC_ASDN, KC_ASUP, KC_ASRP, KC_ASTG, _______, _______, _______, _______, DEBUG  ,
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, RESET  ,
     KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -290,19 +290,19 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   },
   */
   [_LOWER] = {
-    CLR____, CLR____, CLR_ORG, CLR_BLU, CLR_ORG, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_PUR, CLR____,
-    CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_PUR, CLR_ORG, CLR_ORG,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_ORG, CLR_ORG,
+    CLR____, CLR____, CLR_ORG, CLR_BLU, CLR_ORG, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_ORG, CLR_ORG, CLR____,
+    CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_ORG, CLR_ORG, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR____,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_RAISE] = {
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR_GRN, CLR_BLU, CLR_GRN, CLR____
+    CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____,
+    CLR____, CLR_PUR, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR, CLR____,
+    CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_PUR, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_ADJUST] = {
-    CLR_GRN, CLR_GRN, CLR_YLW, CLR_YLW, CLR_RED, CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_RED,
+    CLR____, CLR_GRN, CLR_GRN, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR____, CLR____, CLR____, CLR____, CLR_RED,
     CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_RED,
     CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
