@@ -183,19 +183,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Adjust (Lower + Raise)
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |       | RGBtog | RGBmod | ASDown | ASUp   | ASRpt  | ASTog  |        |        |        |        | Debug  |
+ 1 | F1    | F2     | F3     | F4     | F5     | F6     | F7     | F8     | F9     | F10    | F11    | F12    |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 | F1    | F2     | F3     | F4     | F5     | F6     |        | Vol-   | Vol+   | Skip   | Play   | Reset  |
+ 2 |       |        | ASTog  | ASUp   | RGBTog |        |        | Vol-   | Vol+   | Skip   | Play   | Reset  |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 | F7    | F8     | F9     | F10    | F11    | F12    |        |        |        |        |        |        |
+ 3 |       |        | ASRpt  | ASDown | RGBMod |        |        |        |        |        |        | Debug  |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  4 |       |        |        |        |        |                 |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_ADJUST] = LAYOUT_planck_grid(
-    _______, RGB_TOG, RGB_MOD, KC_ASDN, KC_ASUP, KC_ASRP, KC_ASTG, _______, _______, _______, _______, DEBUG  ,
-    KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, RESET  ,
-    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, _______, _______, _______, _______, _______,
+    KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
+    _______, _______, KC_ASTG, KC_ASUP, RGB_TOG, _______, _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, RESET  ,
+    _______, _______, KC_ASRP, KC_ASDN, RGB_MOD, _______, _______, _______, _______, _______, _______, DEBUG  ,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
@@ -302,9 +302,9 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_ADJUST] = {
-    CLR____, CLR_GRN, CLR_GRN, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR____, CLR____, CLR____, CLR____, CLR_RED,
-    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_RED,
-    CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
+    CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG,
+    CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_RED, CLR____, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_GRN,
+    CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_SHOOTER] = {
