@@ -66,6 +66,9 @@ uint16_t muse_counter   = 0;
 uint8_t  muse_offset    = 70;
 uint16_t muse_tempo     = 50;
 
+float upgrade_song[][2] = SONG(UPGRADE_SOUND);
+float change_song[][2] = SONG(CHANGE_SOUND);
+
 /* Tap Dance */
 
 #define TD_SPC  TD(TD_SPC_TAB)
@@ -322,6 +325,21 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 };
 
 /********** Functions **********/
+
+/* Key Presses */
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch(keycode) {
+        case RESET:
+            if (record->event.pressed) {
+                #ifdef AUDIO_ENABLE
+                PLAY_SONG(upgrade_song);
+                #endif
+            }
+            break;
+    }
+    return true;
+};
 
 /* Layers */
 
