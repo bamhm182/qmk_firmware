@@ -58,6 +58,17 @@ enum planck_layers {
   _CDL
 };
 
+/* Custom Keycodes */
+
+bool android_guac_mode = false;
+
+enum my_keycodes {
+  KA_BTN1 = SAFE_RANGE + 10,
+  KA_BSPC,
+  KA_TOGG,
+  MUS_RST
+};
+
 /* Music */
 
 bool     muse_mode      = false;
@@ -102,6 +113,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_WHR_WHL]   = ACTION_TAP_DANCE_DOUBLE(KC_WH_R, KC_WH_L),
 };
 
+
 /********** Keymaps **********/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -140,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_COLEMAK] = LAYOUT_planck_grid(
     KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, _______,
-    KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_QUOT,
+    KA_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_QUOT,
     KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
     CDL    , TD_CTL , TD_ALT , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   ),
@@ -152,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        |   (    |   )    | PageDn | End    |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 |       |        |        |        |        |        |        |  ` ~   |  - _   |  = +   |  \ |   |        |
+ 3 |       |        |        |        |        | KA_BTN1|        |  ` ~   |  - _   |  = +   |  \ |   |        |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  4 |       |        |        |        |        |    MS_LC_RC     |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
@@ -160,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = LAYOUT_planck_grid(
     _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______, KC_LBRC, KC_RBRC, KC_PGUP, KC_HOME, _______,
     KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_LPRN, KC_RPRN, KC_PGDN, KC_END , _______,
-    _______, _______, _______, _______, _______, _______, _______, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, _______,
+    _______, _______, _______, _______, _______, KA_BTN1, _______, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, _______,
     _______, _______, _______, _______, _______, TD_MSPC, TD_MSPC, _______, _______, _______, _______, _______
   ),
 
@@ -197,7 +209,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT_planck_grid(
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
-    _______, _______, KC_ASTG, KC_ASUP, RGB_TOG, _______, _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, RESET  ,
+    _______, _______, KC_ASTG, KC_ASUP, RGB_TOG, _______, _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, MUS_RST,
     _______, _______, KC_ASRP, KC_ASDN, RGB_MOD, _______, _______, _______, _______, _______, _______, DEBUG  ,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
@@ -216,7 +228,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_QWERTY] = LAYOUT_planck_grid(
     KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , _______,
-    KC_BSPC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT,
+    KA_BSPC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT,
     TD_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
     CDL    , TD_CTL , TD_ALT , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   ),
@@ -265,7 +277,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ,----------------------------------------------------------------------------------------------------------.
  1 |       | QWERTY |        |        |        |        |        |        |        |        |        |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 |       |        |        | SHOOTER|        |        |        |        |        |        |OUTSHINE|        |
+ 2 |       | KATog  |        | SHOOTER|        |        |        |        |        |        |OUTSHINE|        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  3 |       |        |        | COLEMAK|        |        |        |        |        |        |        |        |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
@@ -274,7 +286,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_CDL] = LAYOUT_planck_grid(
     _______, QWERTY , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, SHOOTER, _______, _______, _______, _______, _______, _______, OUTSHIN, _______,
+    _______, KA_TOGG, _______, SHOOTER, _______, _______, _______, _______, _______, _______, OUTSHIN, _______,
     _______, _______, _______, COLEMAK, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
@@ -295,7 +307,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   [_LOWER] = {
     CLR____, CLR____, CLR_ORG, CLR_BLU, CLR_ORG, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_ORG, CLR_ORG, CLR____,
     CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_ORG, CLR_ORG, CLR____,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR____,
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR____,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_RAISE] = {
@@ -318,7 +330,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   },
   [_CDL] = {
     CLR____, CLR_PUR, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
-    CLR____, CLR____, CLR____, CLR_PUR, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR____,
+    CLR____, CLR_PUR, CLR____, CLR_PUR, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_PUR, CLR____,
     CLR____, CLR____, CLR____, CLR_PUR, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____,
   },
@@ -330,11 +342,44 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
-        case RESET:
+        case KA_BTN1:
             if (record->event.pressed) {
-                #ifdef AUDIO_ENABLE
+                if (android_guac_mode) {
+                    SEND_STRING(SS_TAP(X_MS_L));
+                    SEND_STRING(SS_TAP(X_MS_R));
+                    unregister_code(KC_BTN1);
+                }
+                register_code(KC_BTN1);
+            } else {
+                if (android_guac_mode) {
+                    SEND_STRING(SS_DELAY(100));
+                }
+                unregister_code(KC_BTN1);
+            }
+            break;
+        case KA_BSPC:
+            if (record->event.pressed) {
+                if (android_guac_mode) {
+                    SEND_STRING(SS_TAP(X_LEFT));
+                    SEND_STRING(SS_TAP(X_DEL));
+                } else {
+                    register_code(KC_BSPC);
+                }
+            } else if(!android_guac_mode) {
+                unregister_code(KC_BSPC);
+            }
+            break;
+        case KA_TOGG:
+            if (record->event.pressed) {
+                android_guac_mode = !android_guac_mode;
+                PLAY_SONG(change_song);
+            }
+            break;
+        case MUS_RST:
+            if (record->event.pressed) {
                 PLAY_SONG(upgrade_song);
-                #endif
+                SEND_STRING(SS_DELAY(800));
+                reset_keyboard();
             }
             break;
     }
@@ -411,10 +456,12 @@ void rgb_matrix_indicators_user(void) {
     case _CDL:
       set_layer_color(_CDL);
       break;
-   default:
-    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
-      rgb_matrix_set_color_all(0, 0, 0);
-    break;
+    case _COLEMAK:
+    case _QWERTY:
+      if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
+        rgb_matrix_set_color_all(0, 0, 0);
+      }
+      break;
   }
 }
 
