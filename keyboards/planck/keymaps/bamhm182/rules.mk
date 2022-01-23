@@ -7,3 +7,4 @@ MIDI_ENABLE       = yes
 TAP_DANCE_ENABLE  = yes
 AUTO_SHIFT_ENABLE = yes
 FAUXCLICKY_ENABLE = yes
+AUDIO_ENABLE      = yes
