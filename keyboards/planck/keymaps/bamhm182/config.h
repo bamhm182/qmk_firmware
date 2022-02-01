@@ -40,7 +40,7 @@
 
 /* Auto Shift */
 #define AUTO_SHIFT_TIMEOUT 175
-#define AUTO_SHIFT_NO_SETUP
+//#define AUTO_SHIFT_NO_SETUP
 
 /* Layer Lights */
 #define ORYX_CONFIGURATOR

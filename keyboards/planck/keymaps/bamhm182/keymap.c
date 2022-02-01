@@ -204,14 +204,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  3 |       |        |        | MUMod  | RGBMod |        |        |        |        |        |        | Debug  | 
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 |       |        |        |        |        |                 |        |        |        |        |        |
+ 4 | ASTog |        |        |        |        |                 |        |        |        |        |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_ADJUST] = LAYOUT_planck_grid(
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
     _______, _______, _______, MU_TOG , RGB_TOG, _______, _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, MUS_RST,
     _______, _______, _______, MU_MOD , RGB_MOD, _______, _______, _______, _______, _______, _______, DEBUG  ,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    KC_ASTG, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
 /* QWERTY
@@ -320,7 +320,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG,
     CLR____, CLR____, CLR____, CLR_BLU, CLR_RED, CLR____, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR_GRN,
     CLR____, CLR____, CLR____, CLR_BLU, CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
+    CLR_RED, CLR____, CLR____, CLR____, CLR____, CLR____         , CLR____, CLR____, CLR____, CLR____, CLR____
   },
   [_SHOOTER] = {
     CLR____, CLR____, CLR_BLU, CLR_GRN, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_GRN, CLR_BLU, CLR____, CLR____,
