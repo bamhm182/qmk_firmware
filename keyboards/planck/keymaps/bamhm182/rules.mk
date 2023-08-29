@@ -1,10 +1,10 @@
 SRC += muse.c
 
-MOUSEKEY_ENABLE   = yes
-COMMAND_ENABLE    = no
-CONSOLE_ENABLE    = no
-MIDI_ENABLE       = yes
-TAP_DANCE_ENABLE  = yes
-AUTO_SHIFT_ENABLE = yes
-FAUXCLICKY_ENABLE = yes
-AUDIO_ENABLE      = yes
+AUDIO_ENABLE         = yes
+AUTO_SHIFT_ENABLE    = yes
+COMMAND_ENABLE       = no
+CONSOLE_ENABLE       = no
+FAUXCLICKY_ENABLE    = yes
+MIDI_ENABLE          = yes
+MOUSEKEY_ENABLE      = yes
+TAP_DANCE_ENABLE     = yes
