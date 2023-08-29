@@ -144,18 +144,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ,----------------------------------------------------------------------------------------------------------.
  1 | Esc   |   Q    |   W    |   F    |   P    |   B    |   J    |   L    |   U    |   Y    |  ; :   | ASTogg |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 | Bksp  |   A    |   R    |   S    |   T    |   G    |   M    |   N    |   E    |   I    |   O    |  ' "   |
+ 2 | Bksp  |   A    |   R    |   S    |   T    |   G    |   M    |   N    |   E    |   I    |   O    | Enter  |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 | Shift |   Z    |   X    |   C    |   D    |   V    |   K    |   H    |  , <   |  . >   |  / ?   | Enter  |
+ 3 | Shift |   Z    |   X    |   C    |   D    |   V    |   K    |   H    |  , <   |  . >   |  / ?   |  ' "   |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 | Alt   |        | Ctrl   | GUI    | Lower  |     SPC/TAB     | Raise  | Left   | Down   |  Up    | Right  |
+ 4 | Alt   | Ctrl   | Ctrl   | GUI    | Lower  |     SPC/TAB     | Raise  | Left   | Down   |  Up    | Right  |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_COLEMAK] = LAYOUT_planck_grid(
     KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, AS_TOGG,
-    KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_QUOT,
-    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
-    TD_ALT , _______, TD_CTL , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+    KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_ENT ,
+    TD_LSFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT,
+    TD_ALT , TD_CTL , TD_CTL , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   ),
 
 /* QWERTY
@@ -163,18 +163,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ,----------------------------------------------------------------------------------------------------------.
  1 | Esc   |   Q    |   W    |   E    |   R    |   T    |   Y    |   U    |   I    |   O    |   P    | ASTogg |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 | Bksp  |   A    |   S    |   D    |   F    |   G    |   H    |   J    |   K    |   L    |  ; :   |  ' "   |
+ 2 | Bksp  |   A    |   S    |   D    |   F    |   G    |   H    |   J    |   K    |   L    |  ; :   | Enter  |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 3 | Shift |   Z    |   X    |   C    |   V    |   B    |   N    |   M    |  , <   |  . >   |  / ?   | Enter  |
+ 3 | Shift |   Z    |   X    |   C    |   V    |   B    |   N    |   M    |  , <   |  . >   |  / ?   |  ' "   |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 | Alt   |        | Ctrl   | GUI    | Lower  |      Space      | Raise  | Left   | Down   |  Up    | Right  |
+ 4 | Alt   | Ctrl   | Ctrl   | GUI    | Lower  |      Space      | Raise  | Left   | Down   |  Up    | Right  |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_QWERTY] = LAYOUT_planck_grid(
     KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , AS_TOGG,
-    KC_BSPC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT,
-    TD_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
-    TD_ALT , _______, TD_CTL , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+    KC_BSPC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT ,
+    TD_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT,
+    TD_ALT , TD_CTL , TD_CTL , TD_GUI , LOWER  , TD_SPC , TD_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   ),
 /* Lower
        1       2        3        4        5        6        7        8        9        10       11       12
