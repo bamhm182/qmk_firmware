@@ -25,7 +25,7 @@
 
 /* Colors */
 
-#define CLR____ {  0,  0,  0}
+#define CLR____[3] {0,0,0}
 #define CLR_RED {  0,255,255}
 #define CLR_ORG { 28,255,255}
 #define CLR_YLW { 40,255,255}
@@ -160,20 +160,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Lower
        1       2        3        4        5        6        7        8        9        10       11       12
    ,----------------------------------------------------------------------------------------------------------.
- 1 |       |        | MS_WHRL| MS_U   | MS_WHDU|        |        |  [ {   |  ] }   | PageUp | Home   |        |
+ 1 |       |        | MS_WHRL| MS_U   | MS_WHDU|        |        |   (    |   {    |  [ {   |        |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
- 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        |   (    |   )    | PageDn | End    |        |
+ 2 | Del   |        | MS_L   | MS_D   | MS_R   |        |        |   )    |   }    |  ] }   |        |        |
    |-------+--------+--------+--------*========*--------+--------*========*--------+--------+--------+--------|
  3 |       |        |        |        |        | KA_BTN1|        |  ` ~   |  - _   |  = +   |  \ |   |        |
    |-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- 4 |       |        |        |        |        |    MS_LC_RC     |        |        |        |        |        |
+ 4 |       |        |        |        |        |    MS_LC_RC     | Home   | PgDwn  | PgUp   | End    |        |
    `----------------------------------------------------------------------------------------------------------'
  */
   [_LOWER] = LAYOUT_planck_grid(
-    _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______, KC_LBRC, KC_RBRC, KC_PGUP, KC_HOME, _______,
-    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_LPRN, KC_RPRN, KC_PGDN, KC_END , _______,
-    _______, _______, _______, _______, _______, KA_BTN1, _______, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, _______,
-    _______, _______, _______, _______, _______, TD_MSPC, TD_MSPC, _______, _______, _______, _______, _______
+    _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______, KC_LPRN, KC_LCBR, KC_LBRC, _______, _______,
+    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_RPRN, KC_RCBR, KC_RBRC, _______, _______,
+    _______, _______, ______ , _______, _______, KA_BTN1, _______, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, _______,
+    _______, _______, _______, _______, _______, TD_MSPC, TD_MSPC, KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______
   ),
 
 /* Raise
@@ -305,10 +305,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   },
   */
   [_LOWER] = {
-    CLR____, CLR____, CLR_ORG, CLR_BLU, CLR_ORG, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_ORG, CLR_ORG, CLR____,
-    CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_ORG, CLR_ORG, CLR____,
+    CLR____, CLR____, CLR_ORG, CLR_BLU, CLR_ORG, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____,
+    CLR_ORG, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____,
     CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN, CLR____, CLR_PUR, CLR_PUR, CLR_PUR, CLR_PUR, CLR____,
-    CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN         , CLR____, CLR____, CLR____, CLR____, CLR____
+    CLR____, CLR____, CLR____, CLR____, CLR____, CLR_GRN         , CLR_ORG, CLR_ORG, CLR_ORG, CLR_ORG, CLR____
   },
   [_RAISE] = {
     CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR____, CLR____, CLR_BLU, CLR_BLU, CLR_BLU, CLR_BLU, CLR____,
