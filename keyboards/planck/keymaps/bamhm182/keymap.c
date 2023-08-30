@@ -1,19 +1,3 @@
-/* Copyright 2015-2021 Jack Humbert
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 /********** Setup **********/
 
 /* Base */
@@ -56,8 +40,6 @@ enum layers {
 
 /* Custom Keycodes */
 
-bool android_guac_mode = false;
-
 enum my_keycodes {
   MUS_RST
 };
@@ -98,9 +80,9 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_MS_B1_B2]  = ACTION_TAP_DANCE_DOUBLE(KC_BTN1, KC_BTN2),
   [TD_WHD_WHU]   = ACTION_TAP_DANCE_DOUBLE(KC_WH_D, KC_WH_U),
   [TD_WHR_WHL]   = ACTION_TAP_DANCE_DOUBLE(KC_WH_R, KC_WH_L),
-  [TD_LR_PRNS]    = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),
-  [TD_LR_CBRS]    = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
-  [TD_LR_BRCS]    = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_RBRC),
+  [TD_LR_PRNS]   = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),
+  [TD_LR_CBRS]   = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
+  [TD_LR_BRCS]   = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_RBRC),
 };
 
 #define TD_SPC  TD(TD_SPC_TAB)
