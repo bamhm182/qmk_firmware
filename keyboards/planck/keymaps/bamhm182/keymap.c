@@ -45,7 +45,7 @@ extern rgb_config_t rgb_matrix_config;
 #define QWERTY  DF(_QWERTY)
 #define CDL     MO(_CDL)
 
-enum planck_layers {
+enum layers {
   _COLEMAK,
   _LOWER,
   _RAISE,
