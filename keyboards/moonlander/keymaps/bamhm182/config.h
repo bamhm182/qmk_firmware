@@ -14,7 +14,7 @@
 #endif
 
 /* Tapping Toggle */
-#define TAPPING_TERM 200
+#define TAPPING_TERM 250
 #undef  TAPPING_TOGGLE
 #define TAPPING_TOGGLE 2
 
