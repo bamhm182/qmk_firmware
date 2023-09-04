@@ -44,7 +44,8 @@ enum tap_dance {
   TD_WHR_WHL,
   TD_LR_PRNS,
   TD_LR_CBRS,
-  TD_LR_BRCS
+  TD_LR_BRCS,
+  TD_GUI_CTRL
 };
 
 tap_dance_action_t tap_dance_actions[] = {
@@ -59,6 +60,7 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_LR_PRNS]   = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),
   [TD_LR_CBRS]   = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
   [TD_LR_BRCS]   = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_RBRC),
+  [TD_GUI_CTRL]  = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_LCTL),
 };
 
 #define TD_SPC  TD(TD_SPC_TAB)
@@ -72,6 +74,7 @@ tap_dance_action_t tap_dance_actions[] = {
 #define TD_PRNS TD(TD_LR_PRNS)
 #define TD_CBRS TD(TD_LR_CBRS)
 #define TD_BRCS TD(TD_LR_BRCS)
+#define TD_GCTL TD(TD_GUI_CTRL)
 
 /* Custom Keycodes */
 
@@ -100,6 +103,7 @@ enum layers {
 enum custom_keycodes {
     VRSN = SAFE_RANGE,
 };
+
 
 /********** Keymaps **********/
 
@@ -144,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  4 | Shift |   Z    |   X    |   C    |   D    |   V    |                         |   K    |   H    |  , <   |  . >   |  / ?   |  ' "   | 4
    |-------+--------+--------+--------+--------+--------,                         `--------+--------+--------+--------+--------+--------|
  5 |       |        |        |        |        | ,--------.                     ,--------. | Left   | Down   | Up     | Right  |        | 5
-   `-------------------------------------------' |        |                     | Alt    | `--------------------------+--------+--------'
+   `-------------------------------------------' | Alt    |                     |        | `--------------------------+--------+--------'
                                         ,--------+--------+--------.   ,--------+--------+--------.
-                                        | GUI    | SpcTab | Lower  |   | Raise  | Enter  | Ctrl   |
+                                        | G/Ctrl | SpcTab | Lower  |   | Raise  |        |        |
                                         `--------------------------'   `--------------------------'
 */
   [_COLEMAK] = LAYOUT_moonlander(
@@ -154,8 +158,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , _______,         _______, KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, _______,
     KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , _______,         _______, KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_ENT ,
     TD_SHFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   ,                           KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT,
-    _______, _______, _______, _______, _______,   _______,                       TD_ALT ,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
-                                          TD_GUI , TD_SPC , LOWER  ,     RAISE  , KC_ENT , TD_CTL
+    _______, _______, _______, _______, _______,   TD_ALT ,                       _______,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+                                          TD_GCTL, TD_SPC , LOWER  ,     RAISE  , _______, _______
   ),
 
 /* QWERTY
@@ -170,9 +174,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  4 | Shift |   Z    |   X    |   C    |   V    |   B    |                         |   N    |   M    |  , <   |  . >   |  / ?   |  ' "   | 4
    |-------+--------+--------+--------+--------+--------,                         `--------+--------+--------+--------+--------+--------|
  5 |       |        |        |        |        | ,--------.                     ,--------. | Left   | Down   | Up     | Right  |        | 5
-   `-------------------------------------------' |        |                     | Alt    | `--------------------------+--------+--------'
+   `-------------------------------------------' | Alt    |                     |        | `--------------------------+--------+--------'
                                         ,--------+--------+--------.   ,--------+--------+--------.
-                                        | GUI    | SpcTab | Lower  |   | Raise  | Enter  | Ctrl   |
+                                        | G/Ctrl | SpcTab | Lower  |   | Raise  |        |        |
                                         `--------------------------'   `--------------------------'
 */
   [_QWERTY] = LAYOUT_moonlander(
@@ -180,8 +184,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , _______,         _______, KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , _______,
     KC_BSPC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , _______,         _______, KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT ,
     TD_SHFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,                           KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT,
-    _______, _______, _______, _______, _______,   _______,                       TD_ALT ,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
-                                          TD_GUI , TD_SPC , LOWER  ,     RAISE  , KC_ENT , TD_CTL
+    _______, _______, _______, _______, _______,   TD_ALT ,                       _______,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+                                          TD_GCTL, TD_SPC , LOWER  ,     RAISE  , _______, _______ 
   ),
 
 /* Lower
@@ -191,23 +195,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    |-------+--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------+--------|
  2 |       |        |        | MOUS_U |        |        |        |        |        |        | PgUp   | Home   |        |        |        | 2
    |-------+--------+--------+--------+========+--------+--------|        |--------+--------+========+--------+--------+--------+--------|
- 3 | Del   |        | MOUS_L | MOUS_D | MOUS_R |        |        |        |        |        | PgDwn  | End    |        |        |        | 3
+ 3 | Del   |        | MOUS_L | MOUS_D | MOUS_R | MS_LRC |        |        |        |        | PgDwn  | End    |        |        |        | 3
    |-------+--------+--------+--------+========+--------+--------'        `--------+--------+========+--------+--------+--------+--------|
  4 |       |        |        |        |        |        |                          |        |        |        |        |        |        | 4
    |-------+--------+--------+--------+--------+--------,                          `--------+--------+--------+--------+--------+--------|
  5 |       |        |        |        |        | ,--------.                     ,--------.  |        |        |        |        |        | 5
-   `-------------------------------------------' |        |                     |        |  `--------------------------+--------+--------'
+   `-------------------------------------------' |        |                     | Up     |  `--------------------------+--------+--------'
                                         ,--------+--------+--------.   ,--------+--------+--------.
-                                        |        |        |        |   |        | MS_LRC |        |
+                                        |        |        |        |   | Left   | Down   | Right |
                                         `--------------------------'   `--------------------------'
 */
   [_LOWER] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
     _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______,          _______, _______, KC_PGUP, KC_HOME, _______, _______, _______,
-    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______,          _______, _______, KC_PGDN, KC_END , _______, _______, _______,
+    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, TD_MSPC, _______,          _______, _______, KC_PGDN, KC_END , _______, _______, _______,
     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,   _______,                       _______,    _______, _______, _______, _______, _______,
-                                          _______, _______, _______,     _______, TD_MSPC, _______
+    _______, _______, _______, _______, _______,   _______,                       KC_UP  ,    _______, _______, _______, _______, _______,
+                                          _______, _______, _______,     KC_LEFT, KC_DOWN, KC_RGHT
   ),
 
 /* Raise
@@ -280,8 +284,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         `--------------------------'   `--------------------------'
 */
   [_CDL] = LAYOUT_moonlander(
-    _______, QWERTY , _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+    _______, QWERTY , _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, COLEMAK, _______, _______,                            _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______,   _______,                       _______,    _______, _______, _______, _______, _______,
@@ -386,33 +390,6 @@ int convert_led_number(int led) {
   };
   return led_mapping[led];
 }
-  /*
-  [_TEMPLATE] = {
-    CLR_0__, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,          CLR_7__, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
-    CLR_14_, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,          CLR_21_, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
-    CLR_28_, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,          CLR_35_, CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
-    CLR_42_, CLR____, CLR____, CLR____, CLR____, CLR____,                            CLR____, CLR____, CLR____, CLR____, CLR____, CLR____,
-    CLR_54_, CLR____, CLR____, CLR____, CLR____,   CLR_59_,                       CLR_60_,    CLR_61_, CLR_62_, CLR_63_, CLR_64_, CLR_65_,
-                                          CLR_66_, CLR_67_, CLR_68_,     CLR_69_, CLR_70_, CLR_71_
-  },
-    CLR_0__, CLR____, CLR____, CLR____, CLR____,
-    CLR_5__, CLR____, CLR____, CLR____, CLR____,
-    CLR_10_, CLR____, CLR____, CLR____, CLR____,
-    CLR_15_, CLR____, CLR____, CLR____, CLR____,
-    CLR_20_, CLR____, CLR____, CLR____, CLR____,
-    CLR_25_, CLR____, CLR____, CLR____, 
-    CLR_29_, CLR_30_, CLR_31_, 
-    CLR_32_, CLR_33_, CLR_34_, CLR_35_, 
-
-    CLR_36_, CLR____, CLR____, CLR____, CLR____,
-    CLR_41_, CLR____, CLR____, CLR____, CLR____,
-    CLR_46_, CLR____, CLR____, CLR____, CLR____,
-    CLR_51_, CLR____, CLR____, CLR____, CLR____,
-    CLR_56_, CLR____, CLR____, CLR____, CLR____,
-    CLR_61_, CLR____, CLR____, CLR____, 
-    CLR_65_, CLR_66_, CLR_67_, 
-    CLR_68_, CLR_69_, CLR_70_, CLR_71_, 
-  */
 
 void set_layer_color(int layer) {
   for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {

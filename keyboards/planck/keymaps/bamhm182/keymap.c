@@ -41,7 +41,7 @@ enum layers {
 /* Custom Keycodes */
 
 enum my_keycodes {
-  MUS_RST
+  MK_RST
 };
 
 /* Music */
@@ -210,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT_planck_grid(
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
-    _______, _______, AS_TOGG, MU_TOGG, RGB_TOG, _______, _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, MUS_RST,
+    _______, _______, AS_TOGG, MU_TOGG, RGB_TOG, _______, _______, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, MK_RST ,
     _______, _______, _______, MU_NEXT, RGB_MOD, _______, _______, _______, _______, _______, _______, DB_TOGG,
     CDL    , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
@@ -278,7 +278,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
-        case MUS_RST:
+        case MK_RST:
             if (record->event.pressed) {
                 PLAY_SONG(upgrade_song);
                 SEND_STRING(SS_DELAY(800));
@@ -319,6 +319,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 /* LEDs */
+
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
@@ -342,63 +343,18 @@ void set_layer_color(int layer) {
 
 bool rgb_matrix_indicators_user(void) {
   if (keyboard_config.disable_layer_led) { return false; }
-  switch (biton32(layer_state)) {
-    case _LOWER:
-      set_layer_color(_LOWER);
-      break;
-    case _RAISE:
-      set_layer_color(_RAISE);
-      break;
-    case _ADJUST:
-      set_layer_color(_ADJUST);
-      break;
-    case _CDL:
-      set_layer_color(_CDL);
-      break;
-    case _COLEMAK:
-    case _QWERTY:
+  int layer = biton32(layer_state);
+  if (layer == _COLEMAK || layer == _QWERTY) {
       if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
         rgb_matrix_set_color_all(0, 0, 0);
       }
-      break;
+  } else {
+      set_layer_color(layer);
   }
   return false;
 }
 
 /* Music */
-
-bool encoder_update_user(uint8_t index, bool clockwise) {
-  if (muse_mode) {
-    if (IS_LAYER_ON(_RAISE)) {
-      if (clockwise) {
-        muse_offset++;
-      } else {
-        muse_offset--;
-      }
-    } else {
-      if (clockwise) {
-        muse_tempo+=1;
-      } else {
-        muse_tempo-=1;
-      }
-    }
-  } else {
-    if (clockwise) {
-#ifdef MOUSEKEY_ENABLE
-      tap_code(KC_MS_WH_DOWN);
-#else
-      tap_code(KC_PGDN);
-#endif
-    } else {
-#ifdef MOUSEKEY_ENABLE
-      tap_code(KC_MS_WH_UP);
-#else
-      tap_code(KC_PGUP);
-#endif
-    }
-  }
-    return true;
-}
 
 void matrix_scan_user(void) {
 #ifdef AUDIO_ENABLE
