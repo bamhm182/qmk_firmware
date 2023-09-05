@@ -45,7 +45,8 @@ enum tap_dance {
   TD_LR_PRNS,
   TD_LR_CBRS,
   TD_LR_BRCS,
-  TD_GUI_CTRL
+  TD_GUI_ALT,
+  TD_UP_DOWN,
 };
 
 tap_dance_action_t tap_dance_actions[] = {
@@ -60,7 +61,8 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_LR_PRNS]   = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),
   [TD_LR_CBRS]   = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
   [TD_LR_BRCS]   = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_RBRC),
-  [TD_GUI_CTRL]  = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_LCTL),
+  [TD_GUI_ALT]  = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_LALT),
+  [TD_UP_DOWN]   = ACTION_TAP_DANCE_DOUBLE(KC_UP  , KC_DOWN),
 };
 
 #define TD_SPC  TD(TD_SPC_TAB)
@@ -74,7 +76,8 @@ tap_dance_action_t tap_dance_actions[] = {
 #define TD_PRNS TD(TD_LR_PRNS)
 #define TD_CBRS TD(TD_LR_CBRS)
 #define TD_BRCS TD(TD_LR_BRCS)
-#define TD_GCTL TD(TD_GUI_CTRL)
+#define TD_GALT TD(TD_GUI_ALT)
+#define TD_UPDN TD(TD_UP_DOWN)
 
 /* Custom Keycodes */
 
@@ -148,9 +151,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  4 | Shift |   Z    |   X    |   C    |   D    |   V    |                         |   K    |   H    |  , <   |  . >   |  / ?   |  ' "   | 4
    |-------+--------+--------+--------+--------+--------,                         `--------+--------+--------+--------+--------+--------|
  5 |       |        |        |        |        | ,--------.                     ,--------. | Left   | Down   | Up     | Right  |        | 5
-   `-------------------------------------------' | Alt    |                     |        | `--------------------------+--------+--------'
+   `-------------------------------------------' | G/Alt  |                     | Up/Dwn | `--------------------------+--------+--------'
                                         ,--------+--------+--------.   ,--------+--------+--------.
-                                        | G/Ctrl | SpcTab | Lower  |   | Raise  |        |        |
+                                        | Ctrl   | SpcTab | Lower  |   | Raise  | Left   | Right  |
                                         `--------------------------'   `--------------------------'
 */
   [_COLEMAK] = LAYOUT_moonlander(
@@ -158,8 +161,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , _______,         _______, KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, _______,
     KC_BSPC, KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , _______,         _______, KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_ENT ,
     TD_SHFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   ,                           KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT,
-    _______, _______, _______, _______, _______,   TD_ALT ,                       _______,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
-                                          TD_GCTL, TD_SPC , LOWER  ,     RAISE  , _______, _______
+    _______, _______, _______, _______, _______,   TD_GALT ,                       TD_UPDN,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+                                          KC_LCTL, TD_SPC , LOWER  ,     RAISE  , KC_LEFT, KC_RGHT
   ),
 
 /* QWERTY
@@ -174,9 +177,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  4 | Shift |   Z    |   X    |   C    |   V    |   B    |                         |   N    |   M    |  , <   |  . >   |  / ?   |  ' "   | 4
    |-------+--------+--------+--------+--------+--------,                         `--------+--------+--------+--------+--------+--------|
  5 |       |        |        |        |        | ,--------.                     ,--------. | Left   | Down   | Up     | Right  |        | 5
-   `-------------------------------------------' | Alt    |                     |        | `--------------------------+--------+--------'
+   `-------------------------------------------' | G/Alt  |                     |        | `--------------------------+--------+--------'
                                         ,--------+--------+--------.   ,--------+--------+--------.
-                                        | G/Ctrl | SpcTab | Lower  |   | Raise  |        |        |
+                                        | Ctrl | SpcTab | Lower  |   | Raise  |        |        |
                                         `--------------------------'   `--------------------------'
 */
   [_QWERTY] = LAYOUT_moonlander(
@@ -184,8 +187,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , _______,         _______, KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , _______,
     KC_BSPC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , _______,         _______, KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT ,
     TD_SHFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,                           KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT,
-    _______, _______, _______, _______, _______,   TD_ALT ,                       _______,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
-                                          TD_GCTL, TD_SPC , LOWER  ,     RAISE  , _______, _______ 
+    _______, _______, _______, _______, _______,   TD_GALT,                       _______,   KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+                                          KC_LCTL, TD_SPC , LOWER  ,     RAISE  , _______, _______ 
   ),
 
 /* Lower
@@ -193,25 +196,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ,-------------------------------------------------------------.        ,--------------------------------------------------------------.
  1 |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        | 1
    |-------+--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------+--------|
- 2 |       |        |        | MOUS_U |        |        |        |        |        |        | PgUp   | Home   |        |        |        | 2
+ 2 |       |        |        | MOUS_U |        |        |        |        |        | PgUp   | Home   | End    |        |        |        | 2
    |-------+--------+--------+--------+========+--------+--------|        |--------+--------+========+--------+--------+--------+--------|
- 3 | Del   |        | MOUS_L | MOUS_D | MOUS_R | MS_LRC |        |        |        |        | PgDwn  | End    |        |        |        | 3
+ 3 | Del   | MS_LRC | MOUS_L | MOUS_D | MOUS_R | MS_LRC |        |        |        | PgDwn  | Left   | Down   | Up     | Right  |        | 3
    |-------+--------+--------+--------+========+--------+--------'        `--------+--------+========+--------+--------+--------+--------|
- 4 |       |        |        |        |        |        |                          |        |        |        |        |        |        | 4
+ 4 |       | Left   | Down   | Up     | Right  |        |                          |        | Left   | Down   | Up     | Right  |        | 4
    |-------+--------+--------+--------+--------+--------,                          `--------+--------+--------+--------+--------+--------|
  5 |       |        |        |        |        | ,--------.                     ,--------.  |        |        |        |        |        | 5
-   `-------------------------------------------' |        |                     | Up     |  `--------------------------+--------+--------'
+   `-------------------------------------------' |        |                     |        |  `--------------------------+--------+--------'
                                         ,--------+--------+--------.   ,--------+--------+--------.
-                                        |        |        |        |   | Left   | Down   | Right |
+                                        |        |        |        |   |        | MS_LRC |        |
                                         `--------------------------'   `--------------------------'
 */
   [_LOWER] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______,          _______, _______, KC_PGUP, KC_HOME, _______, _______, _______,
-    KC_DEL , _______, KC_MS_L, KC_MS_D, KC_MS_R, TD_MSPC, _______,          _______, _______, KC_PGDN, KC_END , _______, _______, _______,
-    _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,   _______,                       KC_UP  ,    _______, _______, _______, _______, _______,
-                                          _______, _______, _______,     KC_LEFT, KC_DOWN, KC_RGHT
+    _______, _______, TD_MWRL, KC_MS_U, TD_MWDU, _______, _______,          _______, KC_PGUP, KC_HOME, KC_END , _______, _______, _______,
+    KC_DEL , TD_MSPC, KC_MS_L, KC_MS_D, KC_MS_R, TD_MSPC, _______,          _______, KC_PGDN, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+    _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,                            _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______,
+    _______, _______, _______, _______, _______,   _______,                       TD_MSPC,    _______, _______, _______, _______, _______,
+                                          _______, _______, _______,     _______, _______, _______
   ),
 
 /* Raise
@@ -232,7 +235,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         `--------------------------'   `--------------------------'
 */
   [_RAISE] = LAYOUT_moonlander(
-    _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, TD_PRNS, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
     _______, KC_GRV , KC_MINS, KC_EQL , KC_BSLS, _______, _______,          _______, _______, KC_7   , KC_8   , KC_9   , KC_0   , _______,
     _______, _______, KC_LBRC, KC_LCBR, KC_LPRN, _______, _______,          _______, _______, KC_4   , KC_5   , KC_6   , KC_DOT , _______,
     _______, _______, KC_RBRC, KC_RCBR, KC_RPRN, _______,                            _______, KC_1   , KC_2   , KC_3   , KC_COMM, _______,
