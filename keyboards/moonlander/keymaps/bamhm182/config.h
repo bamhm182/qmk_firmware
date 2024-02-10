@@ -19,7 +19,7 @@
 #define TAPPING_TOGGLE 2
 
 /* Auto Shift */
-#define AUTO_SHIFT_TIMEOUT 175
+#define AUTO_SHIFT_TIMEOUT 150
 //#define AUTO_SHIFT_NO_SETUP
 
 /* Layer Lights */

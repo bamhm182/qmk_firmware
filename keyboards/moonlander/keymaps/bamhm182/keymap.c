@@ -178,6 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 /* Colemak
+
        1       2        3        4        5        6        7                7        6        5        4        3        2        1
    ,-------------------------------------------------------------.       ,--------------------------------------------------------------.
  1 | Esc   |   Q    |   W    |   F    |   P    |   B    |        |       |        |   J    |   L    |   U    |   Y    |  ; :   |        | 1
@@ -191,7 +192,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  5 |       |        |        |        | GUI    | ,--------.                     ,--------. |        |        |        |        |        | 5
    `-------------------------------------------' | Alt    |                     |        | `--------------------------+--------+--------'
                                          ,-------+--------+--------.   ,--------+--------+--------.
-                                         | SpcTab| Ctrl   | Lower  |   | Raise  |        |        |
+                                         | SpcTab| Ctrl   | Lower  |   | Raise  | Meh    | Hyper  |
                                          `-------------------------'   `--------------------------'
 */
   [_COLEMAK] = LAYOUT_moonlander(
@@ -200,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TD_SHFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , _______,         _______, KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT,
     _______, _______, _______, _______, _______, _______,                           _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, KC_LGUI,   KC_LALT,                       _______,  _______, _______, _______, _______, _______,
-                                          TD_SPC , KC_LCTL, LOWER  ,     RAISE  , _______, _______
+                                          TD_SPC , KC_LCTL, LOWER  ,     RAISE  , KC_MEH , KC_HYPR
   ),
 
 /* QWERTY
