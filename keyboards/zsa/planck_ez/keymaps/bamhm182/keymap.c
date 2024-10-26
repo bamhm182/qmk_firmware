@@ -30,11 +30,11 @@ extern rgb_config_t rgb_matrix_config;
 #define CDL     MO(_CDL)
 
 enum layers {
-  _COLEMAK,
+  _QWERTY,
   _LOWER,
   _RAISE,
   _ADJUST,
-  _QWERTY,
+  _COLEMAK,
   _CDL
 };
 

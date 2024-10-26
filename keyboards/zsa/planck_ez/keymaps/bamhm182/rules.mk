@@ -1,7 +1,7 @@
 SRC += muse.c
 
 AUDIO_ENABLE         = yes
-AUTO_SHIFT_ENABLE    = yes
+#AUTO_SHIFT_ENABLE    = yes
 COMMAND_ENABLE       = no
 CONSOLE_ENABLE       = no
 FAUXCLICKY_ENABLE    = yes
