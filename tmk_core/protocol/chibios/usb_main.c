@@ -479,6 +479,12 @@ void send_extra(report_extra_t *report) {
 #endif
 }
 
+void send_radio(report_radio_t *report) {
+#ifdef EXTRAKEY_ENABLE
+    send_report(SHARED_IN_EPNUM, report, sizeof(report_radio_t));
+#endif
+}
+
 void send_programmable_button(report_programmable_button_t *report) {
 #ifdef PROGRAMMABLE_BUTTON_ENABLE
     send_report(USB_ENDPOINT_IN_SHARED, report, sizeof(report_programmable_button_t));
