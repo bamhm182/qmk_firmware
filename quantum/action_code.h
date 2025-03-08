@@ -184,7 +184,6 @@ enum usage_pages {
 #define ACTION_USAGE_SYSTEM(id) ACTION(ACT_USAGE, PAGE_SYSTEM << 10 | (id))
 #define ACTION_USAGE_CONSUMER(id) ACTION(ACT_USAGE, PAGE_CONSUMER << 10 | (id))
 #define ACTION_MOUSEKEY(key) ACTION(ACT_MOUSEKEY, key)
-#define ACTION_USAGE_RADIO ACTION(ACT_USAGE, PAGE_RADIO << 10)
 
 /** \brief Layer Actions
  */

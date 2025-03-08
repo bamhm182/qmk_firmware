@@ -79,7 +79,8 @@ static void   send_keyboard(report_keyboard_t *report);
 static void   send_nkro(report_nkro_t *report);
 static void   send_mouse(report_mouse_t *report);
 static void   send_extra(report_extra_t *report);
-host_driver_t lufa_driver = {.keyboard_leds = usb_device_state_get_leds, .send_keyboard = send_keyboard, .send_nkro = send_nkro, .send_mouse = send_mouse, .send_extra = send_extra};
+static void   send_radio(report_radio_t *report);
+host_driver_t lufa_driver = {.keyboard_leds = usb_device_state_get_leds, .send_keyboard = send_keyboard, .send_nkro = send_nkro, .send_mouse = send_mouse, .send_extra = send_extra, .send_radio = send_radio};
 
 void send_report(uint8_t endpoint, void *report, size_t size) {
     uint8_t timeout = 255;

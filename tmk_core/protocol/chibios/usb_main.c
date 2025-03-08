@@ -481,7 +481,7 @@ void send_extra(report_extra_t *report) {
 
 void send_radio(report_radio_t *report) {
 #ifdef EXTRAKEY_ENABLE
-    send_report(SHARED_IN_EPNUM, report, sizeof(report_radio_t));
+    send_report(USB_ENDPOINT_IN_SHARED, report, sizeof(report_radio_t));
 #endif
 }
 

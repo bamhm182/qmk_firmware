@@ -213,8 +213,9 @@ static void send_keyboard(report_keyboard_t *report);
 static void send_nkro(report_nkro_t *report);
 static void send_mouse(report_mouse_t *report);
 static void send_extra(report_extra_t *report);
+static void send_radio(report_radio_t *report);
 
-static host_driver_t driver = {.keyboard_leds = usb_device_state_get_leds, .send_keyboard = send_keyboard, .send_nkro = send_nkro, .send_mouse = send_mouse, .send_extra = send_extra};
+static host_driver_t driver = {.keyboard_leds = usb_device_state_get_leds, .send_keyboard = send_keyboard, .send_nkro = send_nkro, .send_mouse = send_mouse, .send_extra = send_extra, .send_radio = send_radio};
 
 host_driver_t *vusb_driver(void) {
     return &driver;
@@ -276,9 +277,7 @@ void send_programmable_button(report_programmable_button_t *report) {
 
 void send_radio(report_radio_t *report) {
 #ifdef EXTRAKEY_ENABLE
-    if (usbInterruptIsReadyShared()) {
-        usbSetInterruptShared((void *)report, sizeof(report_radio_t));
-    }
+    send_report(SHARED_IN_EPNUM, report, sizeof(report_radio_t));
 #endif
 }
 
@@ -590,8 +589,8 @@ const PROGMEM uchar shared_hid_report[] = {
     0xC0,                     // End Collection
 
     0x05, 0x01,            // Usage Page (Generic Desktop)
-    0x09, 0x0C,            // USAGE (Wireless Radio Controls)
-    0xA1, 0x01,            // COLLECTION (Application)
+    0x09, 0x0C,            // Usage (Wireless Radio Controls)
+    0xA1, 0x01,            // Collection (Application)
     0x85, REPORT_ID_RADIO, //   Report ID (Radio)
     0x15, 0x00,            //   Logical Minimum (0)
     0x25, 0x01,            //   Logical Maximum (1)
@@ -600,7 +599,7 @@ const PROGMEM uchar shared_hid_report[] = {
     0x75, 0x01,            //   Report Size (1)
     0x81, 0x06,            //   Input (Data, Variable, Relative)
     0x75, 0x07,            //   Report Size (7)
-    0x81, 0x03,            //   INPUT (Constant, Variable, Absolute)
+    0x81, 0x03,            //   Input (Constant, Variable, Absolute)
     0xC0,                  // End Collection
 #endif
 

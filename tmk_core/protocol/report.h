@@ -130,7 +130,9 @@ enum desktop_usages {
     SYSTEM_WAKE_UP                = 0x83,
     SYSTEM_RESTART                = 0x8F,
     // 4.10 System Display Controls
-    SYSTEM_DISPLAY_TOGGLE_INT_EXT = 0xB5
+    SYSTEM_DISPLAY_TOGGLE_INT_EXT = 0xB5,
+    // 4.12 Wireless Radio Controls
+    WIRELESS_RADIO_BUTTON         = 0xC6
 };
 
 // clang-format on
@@ -333,6 +335,8 @@ static inline uint16_t KEYCODE2CONSUMER(uint8_t key) {
             return AC_DESKTOP_SHOW_ALL_WINDOWS;
         case KC_LAUNCHPAD:
             return AC_SOFT_KEY_LEFT;
+        case KC_AIRPLANE_MODE:
+            return WIRELESS_RADIO_BUTTON;
         default:
             return 0;
     }

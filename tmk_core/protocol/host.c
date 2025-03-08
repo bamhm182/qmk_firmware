@@ -173,9 +173,8 @@ void host_radio_send(bool state) {
         .report_id = REPORT_ID_RADIO,
         .state     = (uint8_t)state,
     };
-    send_radio(&report);
+    (*driver->send_radio)(&report);
 }
-__attribute__((weak)) void send_radio(report_radio_t *report) {}
 
 #ifdef JOYSTICK_ENABLE
 void host_joystick_send(joystick_t *joystick) {

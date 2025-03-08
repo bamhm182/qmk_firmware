@@ -30,6 +30,7 @@ usb_endpoint_in_t usb_endpoints_in[USB_ENDPOINT_IN_COUNT] = {
 #if defined(EXTRAKEY_ENABLE)
         QMK_USB_REPORT_STROAGE_ENTRY(REPORT_ID_SYSTEM, sizeof(report_extra_t)),
         QMK_USB_REPORT_STROAGE_ENTRY(REPORT_ID_CONSUMER, sizeof(report_extra_t)),
+        QMK_USB_REPORT_STROAGE_ENTRY(REPORT_ID_RADIO, sizeof(report_radio_t)),
 #endif
 #if defined(PROGRAMMABLE_BUTTON_ENABLE)
         QMK_USB_REPORT_STROAGE_ENTRY(REPORT_ID_PROGRAMMABLE_BUTTON, sizeof(report_programmable_button_t)),
